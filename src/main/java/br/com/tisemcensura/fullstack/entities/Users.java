@@ -1,5 +1,7 @@
 package br.com.tisemcensura.fullstack.entities;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -16,13 +18,25 @@ public class Users implements Serializable {
     private String username;
     private String password;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String token;
+
     public Users() {
     }
 
-    public Users(Long id, String username, String password) {
+    public Users(Long id, String username, String password, String token) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.token = token;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public Long getId() {
